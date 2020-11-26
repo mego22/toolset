@@ -28,7 +28,7 @@ apt install -y ${PACKAGES} && \
 echo 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list && \
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key | apt-key add - && \
 apt update && \
-apt-get install -y podman && \
+apt-get install -y podman podman-remote && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
@@ -42,7 +42,8 @@ molecule --version && \
 molecule drivers && \
 python3 -m pip check && \
 which docker && \
-podman --version
+podman --version && \
+podman-remote --version
 # running cli commands adds a minimal level fail-safe protection
 # against a broken image.
 # We cannot run `docker --version` because it requires a server running and
